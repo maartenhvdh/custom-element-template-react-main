@@ -21,7 +21,7 @@ export const IntegrationApp: FC = () => {
       typeof v1 === 'number' && setNumber1(v1)
       CustomElement.getElementValue(codename2, v2 => {
         typeof v2 === 'number' && setNumber2(v2)
-        typeof v1 === 'number' && typeof v2 === 'number'  ? updateValue((v1 + v2).toString()) :
+        (typeof v1 === 'number' && typeof v2 === 'number')  ? updateValue((v1 + v2).toString()) : ""
       });
     });
     
