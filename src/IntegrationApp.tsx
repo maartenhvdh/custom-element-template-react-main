@@ -3,8 +3,8 @@ import { FC, useCallback, useEffect, useState } from 'react';
 export const IntegrationApp: FC = () => {
   const [config, setConfig] = useState<Config | null>(null);
   const [projectId, setProjectId] = useState<string | null>(null);
-  const [number1, setNumber1] = useState<string>("0");
-  const [number2, setNumber2] = useState<string>("0");
+  const [number1, setNumber1] = useState<number>(0);
+  const [number2, setNumber2] = useState<number>(0);
   const [isDisabled, setIsDisabled] = useState(false);
   const [itemName, setItemName] = useState<string | null>(null);
   const [watchedElementValue, setWatchedElementValue] = useState<string | null>(null);
@@ -23,8 +23,8 @@ export const IntegrationApp: FC = () => {
       console.log(v)
       typeof v === 'string' && setNumber1(v)
     });
-    CustomElement.getElementValue(codename2, v => typeof v === 'string' && setNumber2(v));
-    
+    CustomElement.getElementValue(codename2, v => typeof v === 'number' && setNumber1(v));
+    CustomElement.getElementValue(codename2, v => typeof v === 'number' && setNumber2(v));
   }, []);
 
   useEffect(() => {
@@ -40,7 +40,6 @@ export const IntegrationApp: FC = () => {
       updateWatchedElementValue(element.config.textElementCodename);
       updateCalculation(element.config.fieldNumber1, element.config.fieldNumber2);
       setElementValue((parseInt(number1, 0) + parseInt(number2, 0)).toString());
-      setNumber1("2")
     });
   }, [updateWatchedElementValue, updateCalculation]);
 
