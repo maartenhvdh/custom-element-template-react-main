@@ -57,7 +57,7 @@ export const IntegrationApp: FC = () => {
     CustomElement.observeElementChanges([config.fieldNumber2], () => updateCalculation(config.fieldNumber1, config.fieldNumber2));
     console.log("number1")
     console.log(number1)
-    updateValue(number1 + number2)
+    updateValue((number1 + number2).toString())
   }, [config, updateWatchedElementValue, updateCalculation]);
 
   const selectAssets = () =>
