@@ -18,10 +18,7 @@ export const IntegrationApp: FC = () => {
 
   const updateCalculation = useCallback((codename1: string, codename2: string) => {
     CustomElement.getElementValue(codename1, v => typeof v === 'number' && setNumber1(v));
-    CustomElement.getElementValue(codename2, v => typeof v === 'number' && setNumber2(v));
-    console.log("number1")
-    console.log(number1)
-    setElementValue((number1 + number2).toString());
+    CustomElement.getElementValue(codename2, v => typeof v === 'number' && setNumber2(v));    
   }, []);
 
   useEffect(() => {
@@ -36,8 +33,6 @@ export const IntegrationApp: FC = () => {
       setItemName(context.item.name);
       updateWatchedElementValue(element.config.textElementCodename);
       updateCalculation(element.config.fieldNumber1, element.config.fieldNumber2);
-      console.log(number1 + number2)
-      setElementValue((number1 + number2).toString());
     });
   }, [updateWatchedElementValue, updateCalculation]);
 
@@ -88,7 +83,7 @@ export const IntegrationApp: FC = () => {
       </h1>
       <h2>
         <p>Simple sample calculator</p>
-        {number1} + {number2} = {elementValue}
+        {number1} + {number2} = {updateValue(number1 + number2)}
       </h2>
       <section>
         projectId: {projectId}; item name: {itemName}
