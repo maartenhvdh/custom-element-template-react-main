@@ -83,7 +83,7 @@ export const IntegrationApp: FC = () => {
       </h1>
       <h2>
         <p>Simple sample calculator</p>
-        {number1} + {number2} = {updateValue(number1 + number2)}
+        <p>{number1} + {number2} = {updateValue(number1 + number2)}</p>
       </h2>
       <section>
         projectId: {projectId}; item name: {itemName}
