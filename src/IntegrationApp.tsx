@@ -3,8 +3,8 @@ import { FC, useCallback, useEffect, useState } from 'react';
 export const IntegrationApp: FC = () => {
   const [config, setConfig] = useState<Config | null>(null);
   const [projectId, setProjectId] = useState<string | null>(null);
-  const [number1, setNumber1] = useState<string | "0">(null);
-  const [number2, setNumber2] = useState<string | "0">(null);
+  const [number1, setNumber1] = useState<string>("0");
+  const [number2, setNumber2] = useState<string>("0");
   const [isDisabled, setIsDisabled] = useState(false);
   const [itemName, setItemName] = useState<string | null>(null);
   const [watchedElementValue, setWatchedElementValue] = useState<string | null>(null);
