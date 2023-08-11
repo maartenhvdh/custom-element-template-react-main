@@ -30,6 +30,8 @@ export const IntegrationApp: FC = () => {
       setItemName(context.item.name);
       setElementValue(element.value ?? '');
       updateWatchedElementValue(element.config.textElementCodename);
+      updateWatchedElementValue(element.config.fieldNumber1);
+      updateWatchedElementValue(element.config.fieldNumber2);
     });
   }, [updateWatchedElementValue]);
 
@@ -116,6 +118,10 @@ type Config = Readonly<{
 const isConfig = (v: unknown): v is Config =>
   isObject(v) &&
   hasProperty(nameOf<Config>('textElementCodename'), v) &&
+  typeof v.textElementCodename === 'string' && 
+  hasProperty(nameOf<Config>('fieldNumber1'), v) &&
+  typeof v.textElementCodename === 'string' && 
+  hasProperty(nameOf<Config>('fieldNumber2'), v) &&
   typeof v.textElementCodename === 'string';
 
 const hasProperty = <PropName extends string, Input extends {}>(propName: PropName, v: Input): v is Input & { [key in PropName]: unknown } =>
