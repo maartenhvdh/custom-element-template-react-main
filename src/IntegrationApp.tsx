@@ -55,6 +55,9 @@ export const IntegrationApp: FC = () => {
     CustomElement.observeElementChanges([config.textElementCodename], () => updateWatchedElementValue(config.textElementCodename));
     CustomElement.observeElementChanges([config.fieldNumber1], () => updateCalculation(config.fieldNumber1, config.fieldNumber2));
     CustomElement.observeElementChanges([config.fieldNumber2], () => updateCalculation(config.fieldNumber1, config.fieldNumber2));
+    console.log("number1")
+    console.log(number1)
+    updateValue(number1 + number2)
   }, [config, updateWatchedElementValue, updateCalculation]);
 
   const selectAssets = () =>
@@ -83,7 +86,7 @@ export const IntegrationApp: FC = () => {
       </h1>
       <h2>
         <p>Simple sample calculator</p>
-        <p>{number1} + {number2} = {updateValue(number1 + number2)}</p>
+        <p>{number1} + {number2} = {number1 + number2}</p>
       </h2>
       <section>
         projectId: {projectId}; item name: {itemName}
