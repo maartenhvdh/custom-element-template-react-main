@@ -17,8 +17,14 @@ export const IntegrationApp: FC = () => {
   }, []);
 
   const updateCalculation = useCallback((codename1: string, codename2: string) => {
-    CustomElement.getElementValue(codename1, v => typeof v === 'number' && setNumber1(v));
-    CustomElement.getElementValue(codename2, v => typeof v === 'number' && setNumber2(v));    
+    CustomElement.getElementValue(codename1, v1 => {
+      typeof v1 === 'number' && setNumber1(v1)
+      CustomElement.getElementValue(codename2, v2 => {
+        typeof v2 === 'number' && setNumber2(v2)
+        typeof v1 === 'number' && typeof v2 === 'number'  ? updateValue((v1 + v2).toString()) :
+      });
+    });
+    
   }, []);
 
   useEffect(() => {
