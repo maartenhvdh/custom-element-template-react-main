@@ -33,7 +33,7 @@ export const IntegrationApp: FC = () => {
       setItemName(context.item.name);
       updateWatchedElementValue(element.config.textElementCodename);
       updateCalculation(element.config.fieldNumber1, element.config.fieldNumber2);
-      setElementValue((parseInt(number1, 0) + parseInt(number2, 0)).toString());
+      setElementValue((number1 + number2).toString());
     });
   }, [updateWatchedElementValue, updateCalculation]);
 
