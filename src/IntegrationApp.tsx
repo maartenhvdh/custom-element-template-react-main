@@ -3,6 +3,8 @@ import { FC, useCallback, useEffect, useState } from 'react';
 export const IntegrationApp: FC = () => {
   const [config, setConfig] = useState<Config | null>(null);
   const [projectId, setProjectId] = useState<string | null>(null);
+  const [number1, setNumber1] = useState<string | null>(null);
+  const [number2, setNumber2] = useState<string | null>(null);
   const [isDisabled, setIsDisabled] = useState(false);
   const [itemName, setItemName] = useState<string | null>(null);
   const [watchedElementValue, setWatchedElementValue] = useState<string | null>(null);
@@ -22,6 +24,8 @@ export const IntegrationApp: FC = () => {
 
       setConfig(element.config);
       setProjectId(context.projectId);
+      setNumber1(element.config.fieldNumber1);
+      setNumber2(element.config.fieldNumber2);
       setIsDisabled(element.disabled);
       setItemName(context.item.name);
       setElementValue(element.value ?? '');
@@ -73,11 +77,7 @@ export const IntegrationApp: FC = () => {
         This is a great integration with the Kontent.ai app.
       </h1>
       <section>
-        <div id="n1">&nbsp;</div>
-        +
-        <div id="n2">&nbsp;</div>
-        =
-        <div id="result">&nbsp;</div>
+        {number1} + {number2} = {elementValue}
       </section>
       <section>
         projectId: {projectId}; item name: {itemName}
@@ -108,6 +108,8 @@ IntegrationApp.displayName = 'IntegrationApp';
 type Config = Readonly<{
   // expected custom element's configuration
   textElementCodename: string;
+  fieldNumber1: string;
+  fieldNumber2: string;
 }>;
 
 // check it is the expected configuration
