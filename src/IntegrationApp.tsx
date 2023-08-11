@@ -19,6 +19,7 @@ export const IntegrationApp: FC = () => {
   const updateCalculation = useCallback((codename1: string, codename2: string) => {
     CustomElement.getElementValue(codename1, v => typeof v === 'number' && setNumber1(v));
     CustomElement.getElementValue(codename2, v => typeof v === 'number' && setNumber2(v));
+    setElementValue((number1 + number2).toString());
   }, []);
 
   useEffect(() => {
