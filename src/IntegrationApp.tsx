@@ -19,7 +19,7 @@ export const IntegrationApp: FC = () => {
   const updateCalculation = useCallback((codename1: string, codename2: string) => {
     CustomElement.getElementValue(codename1, v => typeof v === 'string' && setNumber1(v));
     CustomElement.getElementValue(codename2, v => typeof v === 'string' && setNumber2(v));
-    setElementValue(parseInt(number1, 0) + parseInt(number2, 0));
+    
   }, []);
 
   useEffect(() => {
@@ -32,9 +32,9 @@ export const IntegrationApp: FC = () => {
       setProjectId(context.projectId);
       setIsDisabled(element.disabled);
       setItemName(context.item.name);
-      setElementValue(element.value ?? '');
       updateWatchedElementValue(element.config.textElementCodename);
       updateCalculation(element.config.fieldNumber1, element.config.fieldNumber2);
+      setElementValue(parseInt(number1, 0) + parseInt(number2, 0));
     });
   }, [updateWatchedElementValue, updateCalculation]);
 
