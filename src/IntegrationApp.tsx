@@ -19,6 +19,7 @@ export const IntegrationApp: FC = () => {
   const updateCalculation = useCallback((codename1: string, codename2: string) => {
     CustomElement.getElementValue(codename1, v => typeof v === 'string' && setNumber1(v));
     CustomElement.getElementValue(codename2, v => typeof v === 'string' && setNumber2(v));
+    setElementValue(number1 + number2);
   }, []);
 
   useEffect(() => {
@@ -29,15 +30,13 @@ export const IntegrationApp: FC = () => {
 
       setConfig(element.config);
       setProjectId(context.projectId);
-      setNumber1(element.config.fieldNumber1);
-      setNumber2(element.config.fieldNumber2);
       setIsDisabled(element.disabled);
       setItemName(context.item.name);
       setElementValue(element.value ?? '');
       updateWatchedElementValue(element.config.textElementCodename);
       updateCalculation(element.config.fieldNumber1, element.config.fieldNumber2);
     });
-  }, [updateWatchedElementValue]);
+  }, [updateWatchedElementValue, updateCalculation]);
 
   useEffect(() => {
     CustomElement.setHeight(500);
@@ -58,7 +57,7 @@ export const IntegrationApp: FC = () => {
     CustomElement.observeElementChanges([config.textElementCodename], () => updateWatchedElementValue(config.textElementCodename));
     CustomElement.observeElementChanges([config.fieldNumber1], () => updateCalculation(config.fieldNumber1, config.fieldNumber2));
     CustomElement.observeElementChanges([config.fieldNumber2], () => updateCalculation(config.fieldNumber1, config.fieldNumber2));
-  }, [config, updateWatchedElementValue]);
+  }, [config, updateWatchedElementValue, updateCalculation]);
 
   const selectAssets = () =>
     CustomElement.selectAssets({ allowMultiple: true, fileType: 'all' })
