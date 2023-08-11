@@ -16,6 +16,11 @@ export const IntegrationApp: FC = () => {
     CustomElement.getElementValue(codename, v => typeof v === 'string' && setWatchedElementValue(v));
   }, []);
 
+  const updateCalculation = useCallback((codename1: string, codename2: string) => {
+    CustomElement.getElementValue(codename1, v => typeof v === 'string' && setNumber1(v));
+    CustomElement.getElementValue(codename2, v => typeof v === 'string' && setNumber2(v));
+  }, []);
+
   useEffect(() => {
     CustomElement.init((element, context) => {
       if (!isConfig(element.config)) {
@@ -30,8 +35,7 @@ export const IntegrationApp: FC = () => {
       setItemName(context.item.name);
       setElementValue(element.value ?? '');
       updateWatchedElementValue(element.config.textElementCodename);
-      updateWatchedElementValue(element.config.fieldNumber1);
-      updateWatchedElementValue(element.config.fieldNumber2);
+      updateCalculation(element.config.fieldNumber1, element.config.fieldNumber2);
     });
   }, [updateWatchedElementValue]);
 
@@ -52,6 +56,8 @@ export const IntegrationApp: FC = () => {
       return;
     }
     CustomElement.observeElementChanges([config.textElementCodename], () => updateWatchedElementValue(config.textElementCodename));
+    CustomElement.observeElementChanges([config.fieldNumber1], () => updateCalculation(config.fieldNumber1, config.fieldNumber2));
+    CustomElement.observeElementChanges([config.fieldNumber2], () => updateCalculation(config.fieldNumber1, config.fieldNumber2));
   }, [config, updateWatchedElementValue]);
 
   const selectAssets = () =>
