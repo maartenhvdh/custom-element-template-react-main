@@ -33,6 +33,7 @@ export const IntegrationApp: FC = () => {
       setItemName(context.item.name);
       updateWatchedElementValue(element.config.textElementCodename);
       updateCalculation(element.config.fieldNumber1, element.config.fieldNumber2);
+      console.log(number1 + number2)
       setElementValue((number1 + number2).toString());
     });
   }, [updateWatchedElementValue, updateCalculation]);
@@ -82,17 +83,15 @@ export const IntegrationApp: FC = () => {
       <h1>
         This is a great integration with the Kontent.ai app.
       </h1>
-      <section>
+      <h2>
+        <p>Simple sample calculator</p>
         {number1} + {number2} = {elementValue}
-      </section>
+      </h2>
       <section>
         projectId: {projectId}; item name: {itemName}
       </section>
       <section>
         configuration: {JSON.stringify(config)}
-      </section>
-      <section>
-        <input value={elementValue} onChange={e => updateValue(e.target.value)} disabled={isDisabled} />
       </section>
       <section>
         This is the watched element: {watchedElementValue}
